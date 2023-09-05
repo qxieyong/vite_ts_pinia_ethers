@@ -11,6 +11,9 @@ import VueI18n from './utils/language';
 // 引入修改的msg
 import Message from '@/utils/ElementUIMsg';
 
+// 引入css适配
+import '@/assets/adaptation.js';
+
 const app = createApp(App);
 const pinia = createPinia();
 if (import.meta.env.VITE_MODE === 'development' || import.meta.env.VITE_MODE === 'test') {
