@@ -16,8 +16,8 @@ import '@/assets/adaptation.js';
 
 const app = createApp(App);
 const pinia = createPinia();
+pinia.use(piniaPluginPersist);
 if (import.meta.env.VITE_MODE === 'development' || import.meta.env.VITE_MODE === 'test') {
-    pinia.use(piniaPluginPersist);
     app.config.globalProperties.$common = common.commom_text //测试
 } else {
     app.config.globalProperties.$common = common.commom; //正式
