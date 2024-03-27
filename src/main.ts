@@ -18,9 +18,9 @@ const app = createApp(App);
 const pinia = createPinia();
 pinia.use(piniaPluginPersist);
 if (import.meta.env.VITE_MODE === 'development' || import.meta.env.VITE_MODE === 'test') {
-    app.config.globalProperties.$common = common.commom_text //测试
+    app.config.globalProperties.$common = common.common_text //测试
 } else {
-    app.config.globalProperties.$common = common.commom; //正式
+    app.config.globalProperties.$common = common.common; //正式
 }
 
 app.config.globalProperties.$message = Message;
