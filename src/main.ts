@@ -12,7 +12,7 @@ import VueI18n from './utils/language';
 import Message from '@/utils/ElementUIMsg';
 
 // 引入css适配
-import '@/assets/adaptation.js';
+import '@/utils/adaptation';
 
 const app = createApp(App);
 const pinia = createPinia();
