@@ -6,8 +6,8 @@ import common from '@/utils/common';
 declare let window: any;
 let commonNow =
   Number(window.ethereum && window.ethereum.chainId) == 97
-    ? common.commom_text
-    : common.commom;
+    ? common.common_text
+    : common.common;
 
 const initSigner = async () => {
   let address: any, Balance: any;
