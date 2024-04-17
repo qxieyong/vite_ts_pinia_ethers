@@ -1,4 +1,4 @@
-import { ElMessage } from 'element-plus';
+import Message from '@/utils/ElementUIMsg';
 // import VueI18n from '@/utils/language/index';
 // let t = VueI18n.global.t;
 type addChainType = {
@@ -70,8 +70,8 @@ let chainMap: {
 };
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 //@ts-ignore
-let { ethereum } = window;
-async function switchChain(chainId: string = '0x66eed') {
+let { ethereum } = window as any;
+async function switchChain(chainId: string = '0x61') {
   let x = await ethereum.request({
     method: 'eth_chainId',
   });
@@ -82,7 +82,6 @@ async function switchChain(chainId: string = '0x66eed') {
         params: [{ chainId: chainId }],
       });
     } catch (switchError: any) {
-      // This error code indicates that the chain has not been added to MetaMask.
       if (switchError.code === 4902) {
         try {
           await ethereum.request({
@@ -90,23 +89,20 @@ async function switchChain(chainId: string = '0x66eed') {
             params: [chainMap[chainId]],
           });
         } catch (addError) {
-          // handle "add" error
           console.error(addError);
-          // Toast.fail("Switch "+chainMap[chainId].chainName+" Chain Failed");
-          //   Toast.fail(t('wallet.addError'));
-          ElMessage.error('Oops, this is a error message.');
+          Message.error('Oops, this is a error message.');
+          throw new Error('Failed to add Ethereum chain');
         }
       } else if (switchError.code === 4001) {
-        // Toast.fail("Switch "+chainMap[chainId].chainName+" Chain Failed")
-        // Toast.fail(t('wallet.Cancelled'));
-        ElMessage.error('Oops, this is a error message.');
+        Message.error('Oops, this is a error message.');
+        throw new Error('Failed to add Ethereum chain');
       } else {
-        // Toast.fail(t('wallet.switchError'));
-        ElMessage.error('Oops, this is a error message.');
+        Message.error('Oops, this is a error message.');
+        throw new Error('Failed to add Ethereum chain');
       }
       // handle other "switch" errors
     }
   }
 }
 
-export { switchChain };
+export default switchChain;
