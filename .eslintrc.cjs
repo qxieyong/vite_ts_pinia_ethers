@@ -4,12 +4,7 @@ module.exports = {
 		browser: true,
 		es2021: true
 	},
-	extends: [
-		"eslint:recommended",
-		"plugin:@typescript-eslint/recommended",
-		"plugin:vue/vue3-recommended",
-		"eslint-config-prettier"
-	],
+	extends: ["eslint:recommended", "plugin:@typescript-eslint/recommended", "plugin:vue/vue3-recommended", "eslint-config-prettier"],
 	parser: "vue-eslint-parser",
 	parserOptions: {
 		ecmaVersion: "latest",
@@ -18,15 +13,8 @@ module.exports = {
 		project: ["./tsconfig.json"],
 		extraFileExtensions: [".vue"]
 	},
-	plugins: ["@typescript-eslint", "prettier"],
-	ignorePatterns: [
-		"src/vendor/**",
-		"src/solid/**",
-		"src/opus-recorder/**",
-		"public/**",
-		"dist",
-		".eslintrc.cjs"
-	], // 忽略检查
+	plugins: ["@typescript-eslint", "prettier", "import"],
+	ignorePatterns: ["src/vendor/**", "src/solid/**", "src/opus-recorder/**", "public/**", "dist", ".eslintrc.cjs"], // 忽略检查
 	overrides: [
 		{
 			files: ["*.ts"],
@@ -53,7 +41,7 @@ module.exports = {
 			}
 		],
 		"object-curly-spacing": ["error", "always"],
-		"linebreak-style": ["error", "windows"], // 设置换行符的风格为 Unix 格式，如果检测到 Windows 格式的换行符则会报错。
+		"linebreak-style": ["error", "unix"], // 设置换行符的风格为 Unix 格式，如果检测到 Windows 格式的换行符则会报错。
 		"eol-last": "off", // 要求文件末尾必须有换行符，如果文件末尾没有换行符则会报错。
 		indent: [
 			"error",
@@ -107,17 +95,11 @@ module.exports = {
 		"no-tabs": "off", //禁止使用制表符。
 		"no-multi-str": "error", //禁止使用多行字符串。
 		"no-new-wrappers": "error", //禁止对原始数据类型进行包装实例化。
-		"no-irregular-whitespace": [
-			"error",
-			{ skipStrings: true, skipComments: true, skipRegExps: true, skipTemplates: true }
-		], //禁止在代码中使用不规则的空白符，但允许在字符串、注释、正则表达式和模板字符串中使用。
+		"no-irregular-whitespace": ["error", { skipStrings: true, skipComments: true, skipRegExps: true, skipTemplates: true }], //禁止在代码中使用不规则的空白符，但允许在字符串、注释、正则表达式和模板字符串中使用。
 		"no-unexpected-multiline": "error", //禁止出现意外的多行代码。
 		"no-return-await": "error", //禁止在 return 语句中使用不必要的 `await
 		"@typescript-eslint/await-thenable": "error",
-		"@typescript-eslint/no-misused-promises": [
-			"error",
-			{ checksConditionals: true, checksVoidReturn: true, checksSpreads: true }
-		],
+		"@typescript-eslint/no-misused-promises": ["error", { checksConditionals: true, checksVoidReturn: true, checksSpreads: true }],
 		complexity: ["error", { max: 15 }], //将圈复杂度的最大值设为15
 		"prettier/prettier": "error", // 开启规则
 		"@typescript-eslint/ban-ts-comment": "off",
