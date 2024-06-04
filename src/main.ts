@@ -1,11 +1,12 @@
-import { createApp } from "vue";
-import "./style.css";
 import { createPinia } from "pinia";
 import piniaPluginPersist from "pinia-plugin-persist";
+import { createApp } from "vue";
+
+import "./style.css";
 import "element-plus/dist/index.css";
-import common from "./utils/common";
-import router from "./router";
 import App from "./App.vue";
+import router from "./router";
+import common from "./utils/common";
 import VueI18n from "./utils/language";
 
 // 引入修改的msg
