@@ -8,12 +8,17 @@ import App from "./App.vue";
 import router from "./router";
 import common from "./utils/common";
 import VueI18n from "./utils/language";
+import updateWebsite from "@/utils/updateWebsite";
 
 // 引入修改的msg
 import Message from "@/utils/ElementUIMsg";
 
 // 引入css适配
 import "@/utils/adaptation";
+
+if(import.meta.env.MODE != "development"){
+    updateWebsite();
+}
 
 const app = createApp(App);
 const pinia = createPinia();
