@@ -23,10 +23,14 @@ if(import.meta.env.MODE != "development"){
 const app = createApp(App);
 const pinia = createPinia();
 pinia.use(piniaPluginPersist);
-if (import.meta.env.VITE_MODE === "development" || import.meta.env.VITE_MODE === "test") {
-	app.config.globalProperties.$common = Number(window.ethereum && window.ethereum.chainId) == 97 ? common.commonText : common.common;
+if (import.meta.env.VITE_MODE === 'development') {
+    app.config.globalProperties.$common = Number(window.ethereum && window.ethereum.chainId) == 97
+        ? common.commonText
+        : common.common;
+} else if (import.meta.env.VITE_MODE === 'test') {
+    app.config.globalProperties.$common = common.commonText;  //测试
 } else {
-	app.config.globalProperties.$common = common.common; // 正式
+    app.config.globalProperties.$common = common.common; //正式
 }
 
 app.config.globalProperties.$message = Message;
