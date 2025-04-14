@@ -1,4 +1,4 @@
-// 适配移动端兼容
+// 适配兼容
 (function (doc, win) {
 	console.log("win.devicePixelRatio", win.devicePixelRatio);
 	const designWidth = 1920; // 设计稿宽度
@@ -7,9 +7,9 @@
 		resizeEvent = "orientationchange" in window ? "orientationchange" : "resize"; // orientationchange 屏幕方向变化
 
 	const recalCulate = function () {
-		const docEle = document.documentElement,
-			w = docEle.clientWidth,
-			num = w / designWidth;
+		const docEle = document.documentElement;
+		const w = docEle.clientWidth;
+		const num = (w > 1920 ? 1920 : w) / 1920; // **此时的1920就是你设计稿的尺寸
 		const fontSize = num * 100 > 70 ? 70 : num * 100 < 30 ? 30 : num * 100;
 		docEle.style.fontSize = fontSize.toFixed(1) + "px";
 	};
