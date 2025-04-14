@@ -2,29 +2,15 @@ import { defineStore } from "pinia";
 export default defineStore("user", {
 	state: () => {
 		return {
-			isLogin: false,
-			address: "",
-			chainId: 0,
-			lang: "EN"
+			token: ""
 		};
 	},
 	getters: {
-		displayAddress(state) {
-			const left = state.address.slice(0, 4);
-			const right = state.address.slice(-4);
-			return `${left}...${right}`;
-		}
+		isLogin: state => state.token
 	},
 	actions: {
-		setUserinfo(address: string) {
-			this.address = address;
-			this.isLogin = true;
-		},
-		setChainId(chainId: number) {
-			this.chainId = chainId;
-		},
-		setLang(lang: string) {
-			this.lang = lang;
+		setToken(token: string) {
+			this.token = token;
 		}
 	},
 	// 开启数据缓存
@@ -33,7 +19,7 @@ export default defineStore("user", {
 		strategies: [
 			{
 				storage: localStorage,
-				paths: ["address", "isLogin", "lang"]
+				paths: ["isLogin", "token"]
 			}
 		]
 	}

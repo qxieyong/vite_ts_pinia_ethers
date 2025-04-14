@@ -1,5 +1,3 @@
-// import i18n from "@/utils/language";
-// const { t } = i18n.global;
 /**
  * @param 时间戳获取日期
  * @param {number} mss 毫秒数

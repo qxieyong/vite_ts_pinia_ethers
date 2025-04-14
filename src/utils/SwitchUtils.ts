@@ -71,6 +71,7 @@ const chainMap: {
 // eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 const { ethereum } = window as any;
+const message = new Message();
 async function switchChain(chainId = "0x61") {
 	const x = await ethereum.request({
 		method: "eth_chainId"
@@ -90,17 +91,16 @@ async function switchChain(chainId = "0x61") {
 					});
 				} catch (addError) {
 					console.error(addError);
-					Message.error("Oops, this is a error message.");
+					message.error("Oops, this is a error message.");
 					throw new Error("Failed to add Ethereum chain");
 				}
 			} else if (switchError.code === 4001) {
-				Message.error("Oops, this is a error message.");
+				message.error("Oops, this is a error message.");
 				throw new Error("Failed to add Ethereum chain");
 			} else {
-				Message.error("Oops, this is a error message.");
+				message.error("Oops, this is a error message.");
 				throw new Error("Failed to add Ethereum chain");
 			}
-			// handle other "switch" errors
 		}
 	}
 }

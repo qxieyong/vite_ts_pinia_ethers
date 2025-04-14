@@ -22,7 +22,7 @@ onMounted(async () => {
 
 	if (user.isLogin) {
 		const { address } = await initSigner();
-		if (address != user.address) {
+		if (address.toLowerCase() != user.address.toLowerCase()) {
 			user.$reset();
 			location.reload();
 			return;

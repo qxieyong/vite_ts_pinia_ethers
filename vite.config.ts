@@ -1,11 +1,14 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path from "path";
+import Icons from 'unplugin-icons/vite'
+import IconsResolver from 'unplugin-icons/resolver'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers';
 // gzip压缩
 import viteCompression from 'vite-plugin-compression'
+
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
@@ -18,7 +21,7 @@ export default defineConfig(({ mode }) => {
             host: "0.0.0.0",
             proxy: {
                 "/api": {
-                    target: "", // 后台接口
+                    target: '', // 后台接口
                     changeOrigin: true,
                     secure: false, // 如果是https接口，需要配置这个参数
                     // ws: true, //websocket支持
@@ -29,10 +32,23 @@ export default defineConfig(({ mode }) => {
         plugins: [
             vue(),
             AutoImport({
-                resolvers: [ElementPlusResolver()],
+                resolvers: [
+                    ElementPlusResolver(),
+                    IconsResolver({
+                        prefix: 'Icon',
+                    }),
+                ],
             }),
             Components({
-                resolvers: [ElementPlusResolver()],
+                resolvers: [
+                    IconsResolver({
+                        enabledCollections: ['ep'],
+                    }),
+                    ElementPlusResolver()
+                ],
+            }),
+            Icons({
+                autoInstall: true,
             }),
             viteCompression({
                 threshold: 1024 * 1024 * 5 // 对大于 5MB 的文件进行压缩
@@ -80,8 +96,8 @@ export default defineConfig(({ mode }) => {
         css: {
             preprocessorOptions: {
                 scss: {
-                    additionalData: `@import '@/assets/scss';`
-                }
+					additionalData: `@use '@/assets/scss' as *;`
+				},
             }
         }
     }
