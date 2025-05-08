@@ -1,4 +1,4 @@
-// 适配兼容
+// 适配移动端兼容
 (function (doc, win) {
 	console.log("win.devicePixelRatio", win.devicePixelRatio);
 	const designWidth = 1920; // 设计稿宽度
@@ -9,10 +9,9 @@
 	const recalCulate = function () {
 		const docEle = document.documentElement;
 		const w = docEle.clientWidth;
-		const num = (w > designWidth ? designWidth : w) / designWidth;
-		let fontSize = num * 100;
-		fontSize = fontSize > 70 ? 70 : fontSize < 30 ? 30 : fontSize;
-		docEle.style.fontSize = fontSize.toFixed(2) + "px";
+		const num = (w / designWidth) * 100;
+		const fontSize = num > 70 ? 70 : num < 30 ? 30 : num;
+		docEle.style.fontSize = fontSize.toFixed(1) + "px";
 	};
 	recalCulate();
 	if (!doc.addEventListener) return;
