@@ -15,7 +15,8 @@ import Message from "@/utils/ElementUIMsg";
 
 // 引入css适配
 import "@/utils/adaptation";
-import updateWebsite from "./utils/updateWebsite";
+
+import "@/assets/font/index.css";
 
 if (import.meta.env.MODE != "development") {
 	updateWebsite();
@@ -34,6 +35,6 @@ setTimeout(()=>{
 	}
 })
 
-app.config.globalProperties.$message = new Message();
+app.config.globalProperties.$message = Message;
 
 app.use(pinia).use(router).use(VueI18n).mount("#app");

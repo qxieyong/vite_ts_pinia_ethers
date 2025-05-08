@@ -1,9 +1,9 @@
 {
   "compilerOptions": {
-    "target": "ES2020",  //指定ts文件编译成ES的哪个版本的js文件
+    "target": "ESNext",  //指定ts文件编译成ES的哪个版本的js文件
     "useDefineForClassFields": true,
     "module": "ESNext",  //指定生成js文件使用的模块化规范。
-    "lib": ["ES2020", "DOM", "DOM.Iterable"], //用来指定项目中要使用的库
+    "lib": ["ESNext", "DOM", "DOM.Iterable"], //用来指定项目中要使用的库
     "skipLibCheck": true,
 
     /* Bundler mode */

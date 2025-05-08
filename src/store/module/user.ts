@@ -2,7 +2,8 @@ import { defineStore } from "pinia";
 export default defineStore("user", {
 	state: () => {
 		return {
-			token: ""
+			token: "",
+			address: ""
 		};
 	},
 	getters: {

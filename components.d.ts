@@ -9,7 +9,10 @@ export {}
 
 declare module '@vue/runtime-core' {
   export interface GlobalComponents {
-    Components: typeof import('./src/components/index.vue')['default']
+    Demo: typeof import('./src/components/Demo.vue')['default']
+    ElButton: typeof import('element-plus/es')['ElButton']
+    IEpCircleCheckFilled: typeof import('~icons/ep/circle-check-filled')['default']
+    IEpEditPen: typeof import('~icons/ep/edit-pen')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
   }

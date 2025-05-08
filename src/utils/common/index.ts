@@ -18,6 +18,8 @@ const common = {
 	url: "https://bscscan.com/tx/"
 };
 
+export type CommonType = typeof commonText;
+
 export default {
 	commonText,
 	common

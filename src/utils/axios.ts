@@ -9,7 +9,6 @@ const service: AxiosInstance = axios.create({
 	timeout: 20000 // 超时时间
 });
 
-
 // 请求取消源集合
 const cancelTokens: Record<string, CancelTokenSource> = {};
 
@@ -79,21 +78,21 @@ service.interceptors.response.use(
 	}
 );
 
+type ResponseBody = {
+	code: number;
+	data: any;
+	msg: string;
+};
+
 // POST 请求封装
-export function axiosPost<T = any>(url: string, params: any = {}): Promise<T> {
+export function axiosPost<T = ResponseBody>(url: string, params: any): Promise<T> {
 	return service.post(url, params).then(response => response.data);
 }
 
 // GET 请求封装
-// export function axiosGet<T = any>(url: string, params?: any): Promise<T> {
-// 	return service.get(url, { params }).then(response => response.data);
-// }
-
-export function axiosGet<T = any>(url: string, params?: any, config?: AxiosRequestConfig): Promise<T> {
-	return service.get(url, { ...config, params }).then(response => response.data);
-  }
-  
-
+export function axiosGet<T = ResponseBody>(url: string, params?: any): Promise<T> {
+	return service.get(url, { params }).then(response => response.data);
+}
 
 // 批量请求封装
 export function axiosAll(requests: Array<Promise<any>>): Promise<any[]> {

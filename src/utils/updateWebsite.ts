@@ -4,9 +4,7 @@ const updateWebsite = () => {
         .then(data => {
             const dom = new DOMParser().parseFromString(data, 'text/html');
             const scripts = dom.querySelectorAll('script[type="module"]') as unknown as HTMLScriptElement[];
-            console.log(scripts, 'bbb')
             scripts.forEach(script => {
-                console.log(script, '标签');
                 if (script.src.includes(window.location.origin)) {
                     const currentVersion = window.localStorage.getItem('version');
                     if (currentVersion !== script.src) {
