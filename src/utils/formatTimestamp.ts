@@ -1,31 +1,31 @@
 /**
  * @param 时间戳获取日期
- * @param {number} mss 毫秒数
- * @param {boolean} isDate 是否需要年月日
+ * @param { number } mss 毫秒数
+ * @param { boolean } isDate 是否需要年月日
  */
 const formatTimestamp = (mss: number, isDate = true) => {
 	// 将毫秒转化成年月日时分秒
-	const timeDetails = mss; // 假如是10位毫秒需要乘1000
+	const timeDetail = mss; // 假如是10位毫秒需要乘1000
 	// 获取年份
-	const year = new Date(timeDetails).getFullYear();
+	const year = new Date(timeDetail).getFullYear();
 	// 获取月份
-	let month: number | string = new Date(timeDetails).getMonth() + 1;
+	let month: number | string = new Date(timeDetail).getMonth() + 1;
 	if (month < 10) {
 		month = "0" + month;
 	}
 	// 获取日
-	let date: number | string = new Date(timeDetails).getDate();
+	let date: number | string = new Date(timeDetail).getDate();
 	if (date < 10) {
 		date = "0" + date;
 	}
 	// 获取小时
-	const h1 = new Date(timeDetails).getHours() < 10 ? "0" + new Date(timeDetails).getHours() : new Date(timeDetails).getHours();
+	const h1 = new Date(timeDetail).getHours() < 10 ? "0" + new Date(timeDetail).getHours() : new Date(timeDetail).getHours();
 	// 获取分钟
-	const m1 = new Date(timeDetails).getMinutes() < 10 ? "0" + new Date(timeDetails).getMinutes() : new Date(timeDetails).getMinutes();
+	const m1 = new Date(timeDetail).getMinutes() < 10 ? "0" + new Date(timeDetail).getMinutes() : new Date(timeDetail).getMinutes();
 	// 获取秒
-	const s1 = new Date(timeDetails).getSeconds() < 10 ? "0" + new Date(timeDetails).getSeconds() : new Date(timeDetails).getSeconds();
+	const s1 = new Date(timeDetail).getSeconds() < 10 ? "0" + new Date(timeDetail).getSeconds() : new Date(timeDetail).getSeconds();
 	// 组合格式为年-月-日 时：分：秒（2021-07-05 21:21:21）
-	let starttime = "";
+	let starttime;
 	if (isDate) {
 		starttime = year + "-" + month + "-" + date + " " + h1 + ":" + m1 + ":" + s1;
 	} else {

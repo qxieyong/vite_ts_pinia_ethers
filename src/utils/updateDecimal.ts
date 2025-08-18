@@ -1,3 +1,8 @@
+/**
+ *
+ * @param value 想要把小数点后面的零去掉的数字
+ * @returns 数字，小数点后面的零被移除
+ */
 export function updateDecimal(value: number | string) {
 	if (typeof value === "string") value = Number(value);
 

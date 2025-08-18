@@ -1,15 +1,17 @@
 import ElMessage from "./ElementUIMsg";
+
 import i18n from "@/utils/language";
+
 const { t } = i18n.global;
 const copy = (val: string) => {
 	if (navigator.clipboard) {
 		navigator.clipboard
 			.writeText(val)
 			.then(_res => {
-				ElMessage.success(t("header.inviteCopy"));
+				ElMessage.success(t("copySuccess"));
 			})
 			.catch(_e => {
-				ElMessage.error(t("global.error"));
+				ElMessage.error(t("copyFailed"));
 			});
 	} else {
 		const input: HTMLInputElement = document.createElement("input");
@@ -18,7 +20,7 @@ const copy = (val: string) => {
 		input.select();
 		document.execCommand("Copy");
 		document.body.removeChild(input);
-		ElMessage.success(t("header.inviteCopy"));
+		ElMessage.success(t("copySuccess"));
 	}
 };
 
