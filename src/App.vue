@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { provide } from "vue";
 
+import { initAppKit } from "@/utils/initAppKit";
+
+initAppKit();
 const cast3 = new BroadcastChannel("channel3");
 provide("cast3", cast3);
 </script>
