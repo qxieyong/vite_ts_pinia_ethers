@@ -1,4 +1,5 @@
 import { ethers } from "ethers";
+
 import common from "@/utils/common";
 
 const commonNow = Number(window.ethereum && window.ethereum.chainId) == 97 ? common.commonText : common.common;
