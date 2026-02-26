@@ -7,7 +7,7 @@ export default defineStore("user", {
 		};
 	},
 	getters: {
-		isLogin: state => state.token
+		isLogin: state => !!state.token
 	},
 	actions: {
 		setToken(token: string) {
