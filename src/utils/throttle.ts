@@ -1,11 +1,11 @@
 /**
- * 
+ *
  * @param func 需要节流的函数
  * @param interval 间隔时间
  * @param immediate 是否立即执行
- * @returns 
+ * @returns
  */
-function throttle<T extends (...args: any[]) => void>(func: T, interval: number = 300, immediate: boolean = true): (...args: Parameters<T>) => void {
+function throttle<T extends (...args: any[]) => void>(func: T, interval = 300, immediate = true): (...args: Parameters<T>) => void {
 	let lastTime = 0;
 	let timer: ReturnType<typeof setTimeout> | null = null;
 
