@@ -1,6 +1,6 @@
-import ElMessage from "./ElementUIMsg";
-
 import i18n from "@/utils/language";
+
+import ElMessage from "./ElementUIMsg";
 
 const { t } = i18n.global;
 const copy = (val: string) => {
