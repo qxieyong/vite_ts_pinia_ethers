@@ -12,6 +12,9 @@ export default defineStore("user", {
 	actions: {
 		setToken(token: string) {
 			this.token = token;
+		},
+		setAddress(address: string) {
+			this.address = address;
 		}
 	},
 	// 开启数据缓存
@@ -20,7 +23,7 @@ export default defineStore("user", {
 		strategies: [
 			{
 				storage: localStorage,
-				paths: ["token"]
+				paths: ["token", "address"]
 			}
 		]
 	}

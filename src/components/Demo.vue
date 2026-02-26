@@ -5,6 +5,8 @@
 		<i-ep-EditPen />
 		<p class="">{{ user.token }}</p>
 		<p>{{ t("copySuccess") }}</p>
+		<div @click="connectWallet">connect wallet</div>
+		<p>{{ user.address }}</p>
 	</div>
 </template>
 
@@ -15,6 +17,7 @@ import { useI18n } from "vue-i18n";
 import { getHome as _getHome } from "@/api";
 import useStore from "@/store";
 // import debounce from "@/utils/debounce";
+import { initSigner } from "@/utils/thhersUtils";
 import throttle from "@/utils/throttle";
 
 const { user } = useStore();
@@ -30,6 +33,15 @@ const _currentIndex = 1;
 // getHome({}).then(res => {
 // 	console.log(res.data);
 // })
+
+const connectWallet = async () => {
+	console.log("connect wallet");
+	if (!user.token) {
+		const { address, signer, provider } = await initSigner();
+		user.setAddress(address);
+		console.log(address, signer, provider);
+	}
+};
 </script>
 
 <style scoped lang="scss"></style>
