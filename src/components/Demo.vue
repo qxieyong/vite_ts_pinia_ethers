@@ -6,19 +6,31 @@
 		<p class="">{{ user.token }}</p>
 		<p>{{ t("copySuccess") }}</p>
 		<div @click="connectWallet">connect wallet</div>
-		<p>{{ user.address }}</p>
+		<p>{{ address }}-{{ connected }}</p>
 	</div>
 </template>
 
 <script lang="ts" setup>
+import { useAppKit } from "@reown/appkit/vue";
 import { getCurrentInstance } from "vue";
 import { useI18n } from "vue-i18n";
 
 import { getHome as _getHome } from "@/api";
+import { useWalletInfo } from "@/hooks/useWalletInfo";
 import useStore from "@/store";
 // import debounce from "@/utils/debounce";
-import { initSigner } from "@/utils/thhersUtils";
 import throttle from "@/utils/throttle";
+
+const modal = useAppKit();
+
+const { address, connected } = useWalletInfo(
+	() => {
+		console.log("登录成功");
+	},
+	() => {
+		console.log("退出登录成功");
+	}
+);
 
 const { user } = useStore();
 const { t } = useI18n();
@@ -37,9 +49,7 @@ const _currentIndex = 1;
 const connectWallet = async () => {
 	console.log("connect wallet");
 	if (!user.token) {
-		const { address, signer, provider } = await initSigner();
-		user.setAddress(address);
-		console.log(address, signer, provider);
+		modal.open();
 	}
 };
 </script>
