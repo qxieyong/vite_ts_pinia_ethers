@@ -15,6 +15,10 @@ export default defineStore("user", {
 		},
 		setAddress(address: string) {
 			this.address = address;
+		},
+		logout() {
+			this.token = "";
+			this.address = "";
 		}
 	},
 	// 开启数据缓存
