@@ -7,3 +7,10 @@ declare module "vue" {
 		$common: CommonType;
 	}
 }
+
+declare global {
+	interface Window {
+		ethereum: any;
+		contracts: any;
+	}
+}
