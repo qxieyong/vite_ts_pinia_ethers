@@ -12,14 +12,18 @@
 
 <script lang="ts" setup>
 import { useAppKit } from "@reown/appkit/vue";
-import { getCurrentInstance } from "vue";
+import { getCurrentInstance, watch } from "vue";
 import { useI18n } from "vue-i18n";
 
 import { getHome as _getHome } from "@/api";
+import { useInitContract } from "@/hooks/useInitContract";
 import { useWalletInfo } from "@/hooks/useWalletInfo";
 import useStore from "@/store";
 // import debounce from "@/utils/debounce";
+import BindABI from "@/utils/contracts/Bind.json";
 import throttle from "@/utils/throttle";
+
+const { proxy } = getCurrentInstance()!;
 
 const modal = useAppKit();
 
@@ -32,9 +36,16 @@ const { address, connected } = useWalletInfo(
 	}
 );
 
+const optionList = [{ name: "Bind", address: proxy?.$common.Bind || "", abi: BindABI }] as const;
+const { contracts } = useInitContract(optionList);
+
+watch(contracts, val => {
+	if (!val || !Object.keys(val).length) return;
+	console.log(val.Bind, "Bind合约");
+});
+
 const { user } = useStore();
 const { t } = useI18n();
-const { proxy } = getCurrentInstance()!;
 proxy?.$message.success("成功");
 
 // const test = debounce(() => console.log("防抖执行"), 500, false);
