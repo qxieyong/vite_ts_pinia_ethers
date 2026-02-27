@@ -5,7 +5,7 @@
  * @param immediate 是否立即执行
  * @returns
  */
-function throttle<T extends (...args: any[]) => void>(func: T, interval = 300, immediate = true): (...args: Parameters<T>) => void {
+function throttle<T extends (..._args: any[]) => void>(func: T, interval = 300, immediate = true): (..._args: Parameters<T>) => void {
 	let lastTime = 0;
 	let timer: ReturnType<typeof setTimeout> | null = null;
 
